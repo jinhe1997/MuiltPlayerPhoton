@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class BossHealth : MonoBehaviour
 {
@@ -11,10 +12,12 @@ public class BossHealth : MonoBehaviour
     PhotonView Pv ;
     public Animator BossAni;
     public Text TextHealth;
+    public RectTransform FinishPanel;
 
     void Start()
     {
         Pv = GetComponent<PhotonView>();
+        FinishPanel = GameObject.Find("FinishPanel").GetComponent<RectTransform>();
     }
 
     void Update()
@@ -37,6 +40,7 @@ public class BossHealth : MonoBehaviour
             BossAni.SetTrigger("Die");
             GameObject Explosion = PhotonNetwork.Instantiate("WFX_Nuke" , transform.position , Quaternion.identity , 0 ) as GameObject;
             Pv.RPC("BossDead" , RpcTarget.All);
+                FinishPanel.DOScale(1,1);
         }
 
         }
@@ -53,7 +57,6 @@ public class BossHealth : MonoBehaviour
     [PunRPC]
     public void BossDead()
     {   
-        PhotonNetwork.LeaveRoom();
         Destroy(gameObject,1f);
     }
 

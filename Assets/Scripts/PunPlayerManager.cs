@@ -10,6 +10,7 @@ public class PunPlayerManager : MonoBehaviourPunCallbacks
     public float Speed;
     
     public Transform PlayerBody;
+    public int Mana;
 
     //  public GameObject PlayerCamera;
 
@@ -20,27 +21,7 @@ public class PunPlayerManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        // PlayerCamera  = GameObject.Find("Main Camera");
-
         Pv = photonView;
-
-        //   CameraWork _cameraWork =
-        //   this.gameObject.GetComponent<CameraWork>();
-        //
-        //   if (_cameraWork != null)
-        //   {
-        //       if (photonView.IsMine)
-        //       {
-        //           _cameraWork.OnStartFollowing();
-        //       }
-        //   }
-        //   else
-        //   {
-        //       Debug.LogError("playerPrefab- CameraWork component 遺失",
-        //           this);
-        //   }
-
-        //Cursor.lockState = CursorLockMode.Locked;
 
     }
 
@@ -69,24 +50,34 @@ public class PunPlayerManager : MonoBehaviourPunCallbacks
             //  PlayerBody.Rotate(Vector3.up * mouseX);
 
             //  PlayerCamera.transform.rotation = PlayerBody.transform.rotation;
+            PlayerAni.SetBool("Walk", false);
 
             if (Input.GetKey(KeyCode.W))
             {
                 transform.Translate(Vector3.forward * 20f * Time.deltaTime);
-                PlayerAni.SetTrigger("Walk");
+                PlayerAni.SetBool("Walk", true);
             }
 
 
             if (Input.GetKey(KeyCode.S))
+            {
                 transform.Translate(-Vector3.forward * 20f * Time.deltaTime);
+                PlayerAni.SetBool("Walk", true);
+            }
 
 
             if (Input.GetKey(KeyCode.Q))
+            {
                 transform.Translate(Vector3.left * 15f * Time.deltaTime);
+                PlayerAni.SetBool("Walk", true);
+            }
 
 
             if (Input.GetKey(KeyCode.E))
+            {
                 transform.Translate(Vector3.right * 15f * Time.deltaTime);
+                PlayerAni.SetBool("Walk", true);
+            }
 
 
             if (Input.GetKey(KeyCode.A))

@@ -2,33 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-
+using UnityEngine.UI;
 
 public class ManaController : MonoBehaviour
 {
-    public int mana;
     PhotonView Pv;
-
     void Start()
     {
-        
+        Pv = GetComponent<PhotonView>();
+        Pv.RPC("DestoryMana", RpcTarget.All);
     }
 
-    void Update()
+
+    void OnCollisionEnter(Collision Col)
     {
-
-
-        void OnCollisionEnter(Collision Col)
+        if (Pv.IsMine && Col.gameObject.tag == "Player")
         {
-            if (Pv.IsMine)
-            {
-                mana++;
-                GetComponent<SphereCollider>().enabled = false;
-                GetComponent<MeshRenderer>().enabled = false;
-                GameObject Explosion = PhotonNetwork.Instantiate("Explosion", transform.position, Quaternion.identity, 0) as GameObject;
+            GetComponent<BoxCollider>().enabled = false;
+            GetComponent<MeshRenderer>().enabled = false;
+            GameObject Explosion = PhotonNetwork.Instantiate("ExplosionStar", transform.position, Quaternion.identity, 0) as GameObject;
 
-            }
         }
-
     }
+
+    [PunRPC]
+    public void DestoryMana()
+    {
+        Destroy(gameObject, 3.5f);
+    }
+
 }

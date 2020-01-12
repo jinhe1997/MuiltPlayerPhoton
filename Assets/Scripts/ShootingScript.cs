@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-using Photon.Realtime;
+using UnityEngine.UI;
 
 public class ShootingScript : MonoBehaviour
 {
     PhotonView pv;
     public GameObject Bullet;
     public Animator PlayerAni;
-
+    public Text ManaText;
     public int Mana;
 
     public int force = 30;
@@ -17,6 +17,7 @@ public class ShootingScript : MonoBehaviour
     void Start()
     {
         pv = GetComponent<PhotonView>();
+        ManaText = GameObject.Find("ManaText").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -30,6 +31,16 @@ public class ShootingScript : MonoBehaviour
             Mana --;
         }
 
+        ManaText.text = Mana.ToString();
+
+    }
+
+    void OnCollisionEnter(Collision Col)
+    {
+        if (pv.IsMine && Col.gameObject.tag == "Managem")
+        {
+            Mana++;
+        }
     }
 
     [PunRPC]

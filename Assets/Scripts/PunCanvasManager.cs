@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class PunCanvasManager : MonoBehaviourPunCallbacks
 {
     public Button CreateRoomButton , JoinRoomButton , LeaveRoomButton;
     public InputField RoomNameField;
+    public RectTransform FinishPanel;
 
     #region  Function
     public void onAnyButtonClick()
@@ -21,6 +23,11 @@ public class PunCanvasManager : MonoBehaviourPunCallbacks
         PunNetworkManager.instance.roomName = RoomNameField.text;
     }
 
+    public void RestartGame()
+    {
+        FinishPanel.DOScale(0,1);
+        PhotonNetwork.LeaveRoom();
+    }
     #endregion
 
     #region PhotonBehaviour

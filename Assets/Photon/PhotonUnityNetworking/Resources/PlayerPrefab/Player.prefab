@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 7932335629178845294}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -218,6 +218,7 @@ MonoBehaviour:
   PlayerAni: {fileID: 7494561408992819103}
   Speed: 1
   PlayerBody: {fileID: 8300806522298246355}
+  Mana: 0
 --- !u!114 &1331370518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,6 +278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bullet: {fileID: 7115202378778032110, guid: 83850bb28b8ee60438e43a04b9daecdd, type: 3}
   PlayerAni: {fileID: 7494561408992819103}
+  ManaText: {fileID: 0}
   Mana: 5
   force: 30
 --- !u!95 &7494561408992819103

@@ -16,8 +16,6 @@ public class BulletExplosion : MonoBehaviour
         pv.RPC("DestoryBullet" , RpcTarget.All);
     }
 
-    // Update is called once per frame
-
     void OnCollisionEnter (Collision Col)
     {
         if (pv.IsMine)

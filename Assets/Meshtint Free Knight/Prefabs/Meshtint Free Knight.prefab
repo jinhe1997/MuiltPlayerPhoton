@@ -229,8 +229,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d21b6f5ae1e593d4cab78ab8b8bad12c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerAni: {fileID: 0}
   Speed: 0
   PlayerBody: {fileID: 4079118292684216}
+  Mana: 0
 --- !u!114 &6324723555407584484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,7 +252,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 7793068514367127653}
-  viewIdField: 2
+  viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!54 &2012675448978422517
